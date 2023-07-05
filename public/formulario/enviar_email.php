@@ -10,15 +10,26 @@ if (isset($_POST['nome']) && isset($_POST['sobrenome']) && isset($_POST['email']
     $chaves = $_POST['chaves'];
     $acompanhamentoObra = $_POST['Acompanhamento_de_obra'];
     $local = $_POST['local'];
-    $forro = $_POST['forro'];
-    $interiores = $_POST['Interiores'];
     $mensagem = $_POST['mensagem'];
     $consideradaOrcamento = $_POST['considerada_no_orcamento'];
     $comoConheceu = $_POST['como_conheceu'];
 
     $assunto = mb_convert_encoding("Formulário de Contato", 'ISO-8859-1', 'UTF-8');
     
-$corpo = "Nome: " . mb_convert_encoding($nome, 'ISO-8859-1') . " " . mb_convert_encoding($sobrenome, 'ISO-8859-1') . "\nE-mail: " . mb_convert_encoding($email, 'ISO-8859-1') . "\nCelular: " . mb_convert_encoding($celular, 'ISO-8859-1') . "\nLocal do Projeto: " . mb_convert_encoding($localProjeto, 'ISO-8859-1') . "\nProjeto: " . mb_convert_encoding($projeto, 'ISO-8859-1') . "\nImóvel: " . mb_convert_encoding($imovel, 'ISO-8859-1') . "\nChaves: " . mb_convert_encoding($chaves, 'ISO-8859-1') . "\nAcompanhamento de Obra: " . mb_convert_encoding($acompanhamentoObra, 'ISO-8859-1') . "\nLocal: " . mb_convert_encoding($local, 'ISO-8859-1') . "\nForro: " . mb_convert_encoding($forro, 'ISO-8859-1') . "\nInteriores: " . mb_convert_encoding($interiores, 'ISO-8859-1') . "\nMensagem: " . mb_convert_encoding($mensagem, 'ISO-8859-1') . "\nConsiderada no Orçamento: " . mb_convert_encoding($consideradaOrcamento, 'ISO-8859-1') . "\nComo Conheceu: " . mb_convert_encoding($comoConheceu, 'ISO-8859-1');
+    $corpo = "Nome: " . mb_convert_encoding($nome, 'ISO-8859-1') . " " . mb_convert_encoding($sobrenome, 'ISO-8859-1') .
+    "\nE-mail: " . mb_convert_encoding($email, 'ISO-8859-1') .
+    "\nCelular: " . mb_convert_encoding($celular, 'ISO-8859-1') .
+    "\nLocal do Projeto: " . mb_convert_encoding($localProjeto, 'ISO-8859-1') .
+    "\nProjeto: " . mb_convert_encoding($projeto, 'ISO-8859-1') .
+    "\nImóvel: " . mb_convert_encoding($imovel, 'ISO-8859-1') .
+    "\nChaves: " . mb_convert_encoding($chaves, 'ISO-8859-1') .
+    "\nAcompanhamento de Obra: " . mb_convert_encoding($acompanhamentoObra, 'ISO-8859-1') .
+    "\nLocal: " . mb_convert_encoding($local, 'ISO-8859-1') .
+  
+   
+    "\nMensagem: " . mb_convert_encoding($mensagem, 'ISO-8859-1') .
+    "\nConsiderada no Orçamento: " . mb_convert_encoding($consideradaOrcamento, 'ISO-8859-1') .
+    "\nComo Conheceu: " . mb_convert_encoding($comoConheceu, 'ISO-8859-1');
     
 
     // Configurar o destinatário do e-mail

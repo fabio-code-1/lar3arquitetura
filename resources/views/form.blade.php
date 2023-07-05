@@ -35,7 +35,7 @@
 
 
 
-      <form class="form-control text-start" action="form/enviar_email.php" method="POST" id="myForm" enctype="multipart/form-data">
+      <form class="form-control text-start" action="formulario/enviar_email.php" method="POST" id="myForm" enctype="multipart/form-data">
         <input type="hidden" name="_next" value="https://lar3arquitetura.com.br/obrigado">
         <input type="hidden" name="_captcha" value="false">
         <div class="cabecalho d-flex align-items-center justify-content-center">
@@ -94,6 +94,7 @@
               <option value="Projeto de Fachada">Projeto de Fachada</option>
               <option value="Aprovação da Prefeitura">Aprovação da Prefeitura</option>
               <option value="Arquitetônico + Interiores">Arquitetônico + Interiores</option>
+              <option value="Arquitetônico + Interiores">Consultoria</option>
               <option value="Outros">Outros</option>
             </select>
           </div>
@@ -159,39 +160,6 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <label for="forro" class="text-start mt-4">Quanto ao forro:</label>
-            <select class="form-select" name="forro" id="forro" aria-label="Default select example">
-              <option selected disabled value="">Favor Selecionar</option>
-              <option value="O local possui forro e quero mantê-lo">O local possui forro e quero mantê-lo</option>
-              <option value="O local não possui forro e quero colocar">O local não possui forro e quero colocar</option>
-              <option value="O local não possui forro e não quero colocar">O local não possui forro e não quero colocar</option>
-              <option value="Quero apenas melhorar o forro existente no local">Quero apenas melhorar o forro existente no local</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label for="Interiores" class="text-start mt-4">Em caso de projeto de interiores?</label>
-            <select class="form-select" name="Interiores" id="Interiores" aria-label="Default select example">
-              <option selected disabled value="">Favor Selecionar</option>
-              <option value="Substituir revestimentos antigos por novos.">Substituir revestimentos antigos por novos.</option>
-              <option value="Manter revestimentos antigos.">Manter revestimentos antigos.</option>
-              <option value="Trocar revestimentos padrão da construtora.">Trocar revestimentos padrão da construtora.</option>
-              <option value="Construtora entregará no contrapiso.">Construtora entregará no contrapiso.</option>
-              <option value="Manter revestimentos padrão da construtora.">Manter revestimentos padrão da construtora.</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label for="moveis" class="text-start mt-4">Você possui móveis ou eletroeletrônicos que deseja manter e incluir no projeto de interiores? Se sim, quais são eles?</label>
-            <input type="text" name="moveis">
-          </div>
-        </div>
 
         <div class="row">
           <div class="col">
@@ -210,8 +178,8 @@
 
         <div class="row">
           <div class="col">
-            <label for=" considerada_no_orcamento" class="text-start mt-4">Mais alguma informação a ser considerada no orçamento? <span class="required">*</span></label>
-            <input type="text" name=" considerada_no_orcamento" required>
+            <label for=" considerada_no_orcamento" class="text-start mt-4">Mais alguma informação a ser considerada no orçamento?</label>
+            <input type="text" name=" considerada_no_orcamento">
           </div>
         </div>
 

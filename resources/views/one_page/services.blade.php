@@ -7,36 +7,48 @@
       </div>
     </div>
   </div>
-  <div class="row text-center">
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="services__item">
-        <img src="img/services/services-1.png" alt="">
-        <h4>Projeto de Interiores</h4>
-        <p>Um projeto de interiores é o planejamento e criação de espaços internos funcionais e esteticamente agradáveis. </p>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="services__item">
-        <img src="img/services/services-2.png" alt="">
-        <h4>Projeto de Prefeitura</h4>
-        <p>Documentos e desenhos técnicos para aprovação de construção, reforma ou regularização de um imóvel. </p>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="services__item">
-        <img src="img/services/services-3.png" alt="">
-        <h4>Projeto de Fachada</h4>
-        <p>Um projeto de fachada é a expressão arquitetônica que define a aparência externa de um edifício. </p>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="services__item">
-        <img src="img/services/services-4.png" alt="">
-        <h4>Projeto 3D</h4>
-        <p>Projeto 3D é a criação de representações virtuais tridimensionais de um ambiente ou objeto. </p>
-      </div>
+
+
+  <div class="row text-center justify-content-center">
+  <div class="col">
+    <div class="services__item">
+      <img src="img/services/services-1.png" alt="">
+      <h4>Projeto de Interiores</h4>
+      <p>Um projeto de interiores é o planejamento e criação de espaços internos funcionais e esteticamente agradáveis.</p>
     </div>
   </div>
+  <div class="col">
+    <div class="services__item">
+      <img src="img/services/services-2.png" alt="">
+      <h4>Projeto de Prefeitura</h4>
+      <p>Documentos e desenhos técnicos para aprovação de construção, reforma ou regularização de um imóvel.</p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="services__item">
+      <img src="img/services/services-3.png" alt="">
+      <h4>Projeto de Fachada</h4>
+      <p>Um projeto de fachada é a expressão arquitetônica que define a aparência externa de um edifício.</p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="services__item">
+      <img src="img/services/services-4.png" alt="">
+      <h4>Projeto 3D</h4>
+      <p>Projeto 3D é a criação de representações virtuais tridimensionais de um ambiente ou objeto.</p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="services__item">
+      <img src="img/services/services-6.png" alt="">
+      <h4>Consultoria</h4>
+      <p>Consultoria online: Oferecemos sugestões, dicas e orientações pontuais, incluindo referências e visualizações em 3D.</p>
+    </div>
+  </div>
+</div>
+
+
+
 
   <a href="https://wa.me/5511981664628?text=Olá%2C%20eu%20vi%20seu%20site%20e%20gostaria%20de%20um%20orçamento" class="primary-btn normal-btn d-flex justify-content-center align-items-center"><i class="bi bi-whatsapp pe-4"></i> SOLICITAR ORÇAMENTO</a>
 

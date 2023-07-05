@@ -94,6 +94,15 @@ function sendMessage() {
       </div>
     `;
   }
+  else if (userMessage.toLowerCase().includes('arquivo') || userMessage.includes('oi') || userMessage.includes('ola') || userMessage.includes('olá')) 
+  {
+    divMensagemAcompanhamento.innerHTML = `
+      <img src="icons/robot.svg" alt="chat" class="mt-3 mx-3">
+      <div class="d-flex flex-column">
+        <p class="mt-3">Olá! Como posso ajudar você hoje? Estou aqui para responder suas perguntas e fornecer suporte.</p>
+      </div>
+    `;
+  }
   else {
     divMensagemAcompanhamento.innerHTML = `
       <img src="icons/robot.svg" alt="chat" class="mt-3 mx-3">
