@@ -98,5 +98,5 @@
 <script src="js/chatbot/message-bot-5.js"></script>
 <script src="js/chatbot/message-person.js"></script>
 <script src="js/chatbot/voltar.js"></script>
-
+<script src="js/chatbot/teclado.js"></script>
 </html>
