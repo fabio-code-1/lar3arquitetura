@@ -1,85 +1,130 @@
 <?php
-if (isset($_POST['nome']) && isset($_POST['sobrenome']) && isset($_POST['email']) && isset($_POST['celular']) && isset($_POST['local_projeto']) && isset($_POST['projeto']) && isset($_POST['imovel']) && isset($_POST['chaves']) && isset($_POST['Acompanhamento_de_obra']) && isset($_POST['local']) && isset($_POST['forro']) && isset($_POST['Interiores']) && isset($_POST['mensagem']) && isset($_POST['considerada_no_orcamento']) && isset($_POST['como_conheceu'])) {
-    $nome = $_POST['nome'];
-    $sobrenome = $_POST['sobrenome'];
-    $email = $_POST['email'];
-    $celular = $_POST['celular'];
-    $localProjeto = $_POST['local_projeto'];
-    $projeto = $_POST['projeto'];
-    $imovel = $_POST['imovel'];
-    $chaves = $_POST['chaves'];
-    $acompanhamentoObra = $_POST['Acompanhamento_de_obra'];
-    $local = $_POST['local'];
-    $mensagem = $_POST['mensagem'];
-    $consideradaOrcamento = $_POST['considerada_no_orcamento'];
-    $comoConheceu = $_POST['como_conheceu'];
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
-    $assunto = mb_convert_encoding("Formulário de Contato", 'ISO-8859-1', 'UTF-8');
-    
-    $corpo = "Nome: " . mb_convert_encoding($nome, 'ISO-8859-1') . " " . mb_convert_encoding($sobrenome, 'ISO-8859-1') .
-    "\nE-mail: " . mb_convert_encoding($email, 'ISO-8859-1') .
-    "\nCelular: " . mb_convert_encoding($celular, 'ISO-8859-1') .
-    "\nLocal do Projeto: " . mb_convert_encoding($localProjeto, 'ISO-8859-1') .
-    "\nProjeto: " . mb_convert_encoding($projeto, 'ISO-8859-1') .
-    "\nImóvel: " . mb_convert_encoding($imovel, 'ISO-8859-1') .
-    "\nChaves: " . mb_convert_encoding($chaves, 'ISO-8859-1') .
-    "\nAcompanhamento de Obra: " . mb_convert_encoding($acompanhamentoObra, 'ISO-8859-1') .
-    "\nLocal: " . mb_convert_encoding($local, 'ISO-8859-1') .
-  
-   
-    "\nMensagem: " . mb_convert_encoding($mensagem, 'ISO-8859-1') .
-    "\nConsiderada no Orçamento: " . mb_convert_encoding($consideradaOrcamento, 'ISO-8859-1') .
-    "\nComo Conheceu: " . mb_convert_encoding($comoConheceu, 'ISO-8859-1');
-    
+//Load Composer's autoloader
+require 'vendor/autoload.php';
 
-    // Configurar o destinatário do e-mail
-    $destinatario = 'equipe@lar3arquitetura.com.br';
+if (isset($_POST['enviar'])) {
 
-    // Configurar os cabeçalhos do e-mail
-    $boundary = md5(time());
-    $headers = "From: $email" . "\r\n" .
-        "Reply-To: $email" . "\r\n" .
-        "Content-Type: multipart/mixed; boundary=\"$boundary\"";
 
-    // Verificar se foi enviada uma imagem
-    if (isset($_FILES['fotos']) && $_FILES['fotos']['error'] == 0) {
-        // Obter as informações do arquivo
-        $file_name = $_FILES['fotos']['name'];
-        $file_tmp = $_FILES['fotos']['tmp_name'];
-        $file_type = $_FILES['fotos']['type'];
+    $mail = new PHPMailer(true);
 
-        // Ler o conteúdo do arquivo
-        $file_content = file_get_contents($file_tmp);
+    try {
+        //Server settings
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;           
+        $mail->isSMTP();
+        $mail->Host = 'smtp.hostinger.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'equipe@lar3arquitetura.com.br';
+        $mail->Password = 'Bm@97794241';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
 
-        // Codificar o conteúdo do arquivo em base64
-        $file_content_encoded = chunk_split(base64_encode($file_content));
+        //Recipients
+        $mail->setFrom('equipe@lar3arquitetura.com.br', $_POST['email']);
+        $mail->addAddress('equipe@lar3arquitetura.com.br', 'lar3arquitetura');
+        $mail->addReplyTo('equipe@lar3arquitetura.com.br', 'Information');
 
-        // Armar o cabeçalho do anexo
-        $attachment = "--$boundary\r\n";
-        $attachment .= "Content-Type: $file_type; name=\"$file_name\"\r\n";
-        $attachment .= "Content-Disposition: attachment; filename=\"$file_name\"\r\n";
-        $attachment .= "Content-Transfer-Encoding: base64\r\n\r\n";
-        $attachment .= $file_content_encoded . "\r\n";
 
-        // Adicionar o anexo ao corpo do e-mail
-        $corpo = "--$boundary\r\n" .
-            "Content-Type: text/plain; charset=UTF-8\r\n" .
-            "Content-Transfer-Encoding: 8bit\r\n\r\n" .
-            $corpo . "\r\n" .
-            $attachment . "--$boundary--\r\n";
-    } else {
-        // Se não houver imagem anexada, enviar o e-mail apenas com o corpo
-        $corpo = "--$boundary\r\n" .
-            "Content-Type: text/plain; charset=UTF-8\r\n" .
-            "Content-Transfer-Encoding: 8bit\r\n\r\n" .
-            $corpo . "\r\n";
+
+
+        // Verifica se há arquivos enviados
+        if (isset($_FILES['fotos']) && !empty($_FILES['fotos']['name'][0])) {
+            // Loop para anexar os arquivos enviados
+            foreach ($_FILES['fotos']['tmp_name'] as $key => $tmp_name) {
+                $file = $_FILES['fotos'];
+
+                // Obtém os detalhes do arquivo
+                $file_name = $file['name'][$key];
+                $file_tmp = $file['tmp_name'][$key];
+                $file_type = $file['type'][$key];
+
+                // Adiciona o anexo ao email
+                $mail->addAttachment($file_tmp, $file_name);
+            }
+        }
+
+
+
+        //Content
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject = 'Mensagem via Site Lar3Arquitetura - ' . $_POST['nome'];
+        $body = '
+            <html>
+            <head>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
+                
+            </head>
+            <body>
+                <h2>Orçamento enviado através do site, segue informações abaixo:</h2><br>
+                <div class="table-responsive">
+                    <table class="contact-table table table-striped">
+                        <tr>
+                            <th>Nome</th>
+                            <td>' . $_POST['nome'] . '</td>
+                            <th>Sobrenome</th>
+                            <td>' . $_POST['sobrenome'] . '</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>' . $_POST['email'] . '</td>
+                            <th>Celular</th>
+                            <td>' . $_POST['celular'] . '</td>
+                        </tr>
+                        <tr>
+                            <th>Local do Projeto</th>
+                            <td>' . $_POST['local_projeto'] . '</td>
+                            <th>Projeto</th>
+                            <td>' . $_POST['projeto'] . '</td>
+                        </tr>
+                        <tr>
+                            <th>Imóvel</th>
+                            <td>' . $_POST['imovel'] . '</td>
+                            <th>Chaves</th>
+                            <td>' . $_POST['chaves'] . '</td>
+                        </tr>
+                        <tr>
+                            <th>Área</th>
+                            <td>' . $_POST['area'] . '</td>
+                            <th>Acompanhamento de Obra</th>
+                            <td>' . $_POST['Acompanhamento_de_obra'] . '</td>
+                        </tr>
+                        <tr>
+                            <th>Local</th>
+                            <td>' . $_POST['local'] . '</td>
+                            <th>Mensagem</th>
+                            <td>' . $_POST['mensagem'] . '</td>
+                        </tr>
+                        <tr>
+                            <th>Considerada no Orçamento</th>
+                            <td>' . $_POST['considerada_no_orcamento'] . '</td>
+                            <th>Como Conheceu</th>
+                            <td>' . $_POST['como_conheceu'] . '</td>
+                        </tr>
+                    </table>
+                </div>
+            </body>
+            </html>';
+
+
+        $mail->Body = $body;
+
+
+        // Verificar se os anexos estão sendo corretamente detectados
+        echo "Número de arquivos anexados: " . count($_FILES['fotos']['tmp_name']) . "\n";
+        echo "Arquivos anexados: \n";
+        print_r($_FILES['fotos']);
+
+
+        $mail->send();
+        header('Location: https://lar3arquitetura.com.br/obrigado');
+        exit();
+    } catch (Exception $e) {
+        echo "Erro ao enviar o email: {$mail->ErrorInfo}";
     }
-
-    // Enviar o e-mail
-    if (mail($destinatario, $assunto, $corpo, $headers)) {
-        echo "E-mail enviado com sucesso!";
-        echo '<script>window.location.href = "https://lar3arquitetura.com.br/obrigado";</script>';
-    } else {
-        echo "Ocorreu um erro ao enviar o e-mail.";
-    }
+} else {
+    echo "Erro ao enviar email, acesso não foi via formulário";
 }

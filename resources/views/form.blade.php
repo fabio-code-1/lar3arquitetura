@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col">
             <label for="fotos" class="text-start mt-4">Possui plantas, fotos e/ou arquivos importantes do local do projeto?</label>
-            <input type="file" name="fotos" accept="image/*" multiple>
+            <input type="file" name="fotos[]" accept="image/*" multiple>
           </div>
         </div>
 
@@ -199,7 +199,7 @@
 
         <!-- Botao enviar -->
         <div class="d-grid gap-2">
-          <button type="submit" class="mt-5 btn btn-success">Enviar</button>
+          <button type="submit" name="enviar" class="mt-5 btn btn-success">Enviar</button>
         </div>
       </form>
 
